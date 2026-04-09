@@ -49,14 +49,23 @@
         /* Animation states */
         .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
             will-change: opacity, transform;
         }
         
         .reveal.active {
             opacity: 1 !important;
             transform: translateY(0) !important;
+        }
+
+        /* FALLBACK: If JS fails or is slow, show content after 3 seconds anyway */
+        @keyframes forceShow {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .reveal {
+            animation: forceShow 0.1s forwards;
+            animation-delay: 3s; 
         }
 
         .hero-gradient {
@@ -435,25 +444,40 @@
         lucide.createIcons();
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Reveal Logic Fix for GitHub
-        function reveal() {
+        /**
+         * AGGRESSIVE REVEAL SYSTEM
+         * Ensures visibility even on slow GitHub loads
+         */
+        function forceReveal() {
             const reveals = document.querySelectorAll(".reveal");
             const windowHeight = window.innerHeight;
+            
             reveals.forEach(el => {
                 const elementTop = el.getBoundingClientRect().top;
-                const elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
+                // If the element is within 150px of the screen view, or it's the hero, reveal it
+                if (elementTop < windowHeight - 50 || el.closest('#home')) {
                     el.classList.add("active");
                 }
             });
         }
 
-        // Run reveal immediately, on scroll, and on load
-        window.addEventListener("scroll", reveal);
-        window.addEventListener("load", reveal);
-        // Force initial run
-        setTimeout(reveal, 100);
-        setTimeout(reveal, 500); 
+        // 1. Run on load
+        window.addEventListener("load", forceReveal);
+        
+        // 2. Run on scroll
+        window.addEventListener("scroll", forceReveal);
+
+        // 3. Brute force check: Run every 100ms for 2 seconds to catch elements that shifted
+        let checkCount = 0;
+        const interval = setInterval(() => {
+            forceReveal();
+            checkCount++;
+            if (checkCount > 20) clearInterval(interval);
+        }, 100);
+
+        // 4. Mutation observer: Catch elements if they are added or changed
+        const observer = new MutationObserver(forceReveal);
+        observer.observe(document.body, { childList: true, subtree: true });
 
         // Lead Form
         const form = document.getElementById('bookingForm');
