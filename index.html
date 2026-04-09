@@ -7,10 +7,12 @@
     <meta name="description" content="Tampa's high-demand window tinting specialist. Premium Ceramic & Carbon films, PPF, Ceramic Coating, and Intoxalock installation. Located at 1717 E Busch Blvd.">
     <meta name="keywords" content="Tampa window tinting, ceramic tint Tampa, carbon tint, Apex AutoFilm, automotive protection Tampa, Intoxalock installation Tampa">
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -34,6 +36,7 @@
         }
     </script>
 
+    <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
@@ -43,15 +46,17 @@
             overflow-x: hidden;
         }
         
+        /* Animation states */
         .reveal {
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: opacity, transform;
         }
         
         .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+            opacity: 1 !important;
+            transform: translateY(0) !important;
         }
 
         .hero-gradient {
@@ -97,6 +102,7 @@
 </head>
 <body class="font-body antialiased selection:bg-brand-gold selection:text-brand-black">
 
+    <!-- Navigation -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 border-b border-transparent">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-24">
@@ -132,6 +138,7 @@
             </div>
         </div>
 
+        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden fixed inset-0 bg-brand-black z-[60] flex flex-col items-center justify-center space-y-8">
              <button id="close-menu" class="absolute top-8 right-8 text-brand-gold">
                 <i data-lucide="x" class="w-10 h-10"></i>
@@ -144,6 +151,7 @@
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=2000" alt="Exotic Car Rear" class="w-full h-full object-cover grayscale-[40%] scale-105" />
@@ -173,6 +181,7 @@
         </div>
     </section>
 
+    <!-- Services Section -->
     <section id="services" class="py-32 bg-brand-black overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-20 items-center mb-32 reveal">
@@ -251,6 +260,7 @@
         </div>
     </section>
 
+    <!-- Gallery Section -->
     <section id="gallery" class="py-32 bg-brand-charcoal border-y border-white/5">
         <div class="max-w-4xl mx-auto px-4 text-center reveal">
             <span class="text-brand-gold font-black uppercase tracking-[.4em] text-xs mb-6 block">Visual Portfolio</span>
@@ -267,6 +277,7 @@
         </div>
     </section>
 
+    <!-- About Section -->
     <section id="about" class="py-32 bg-brand-black">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center reveal">
@@ -304,6 +315,7 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact" class="py-32 bg-brand-charcoal relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
             <div class="bg-brand-black rounded-sm border border-white/5 overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-2">
@@ -361,6 +373,7 @@
         </div>
     </section>
 
+    <!-- Admin Panel -->
     <div id="admin-panel" class="z-[1000]">
         <div class="max-w-4xl mx-auto">
             <div class="flex justify-between items-center mb-8">
@@ -373,6 +386,7 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <footer class="bg-brand-black py-20 border-t border-white/5 relative">
         <div class="max-w-7xl mx-auto px-4 text-center">
             
@@ -404,12 +418,12 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Firebase Config
         const firebaseConfig = JSON.parse(__firebase_config);
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -420,6 +434,26 @@
 
         lucide.createIcons();
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Reveal Logic Fix for GitHub
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            const windowHeight = window.innerHeight;
+            reveals.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    el.classList.add("active");
+                }
+            });
+        }
+
+        // Run reveal immediately, on scroll, and on load
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
+        // Force initial run
+        setTimeout(reveal, 100);
+        setTimeout(reveal, 500); 
 
         // Lead Form
         const form = document.getElementById('bookingForm');
@@ -458,7 +492,7 @@
             }
         });
 
-        // Hidden Admin Feature
+        // Admin Auth
         window.checkAdmin = () => {
             const pass = prompt("Admin Password:");
             if (pass === "apex2025") {
@@ -493,19 +527,14 @@
             }
         };
 
-        // Scroll Effects
+        // Navbar Styling on Scroll
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) navbar.classList.add('bg-brand-black/90', 'nav-blur', 'border-white/5');
             else navbar.classList.remove('bg-brand-black/90', 'nav-blur', 'border-white/5');
-            
-            // Reveal logic
-            document.querySelectorAll(".reveal").forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
-            });
         });
 
-        // Mobile Menu
+        // Mobile Menu Controls
         document.getElementById('mobile-menu-btn').onclick = () => document.getElementById('mobile-menu').classList.remove('hidden');
         document.getElementById('close-menu').onclick = () => document.getElementById('mobile-menu').classList.add('hidden');
         document.querySelectorAll('.mobile-link').forEach(l => l.onclick = () => document.getElementById('mobile-menu').classList.add('hidden'));
