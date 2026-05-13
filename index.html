@@ -7,12 +7,10 @@
     <meta name="description" content="Tampa's high-demand window tinting specialist. Premium Ceramic & Carbon films, PPF, Ceramic Coating, and Intoxalock installation. Located at 1717 E Busch Blvd.">
     <meta name="keywords" content="Tampa window tinting, ceramic tint Tampa, carbon tint, Apex AutoFilm, automotive protection Tampa, Intoxalock installation Tampa">
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -36,111 +34,46 @@
         }
     </script>
 
-    <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        body {
-            background-color: #0a0a0a;
-            color: #f3f4f6;
-            overflow-x: hidden;
-        }
-        
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            will-change: opacity, transform;
-        }
-        
-        .reveal.active {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-
-        @keyframes forceShow {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .reveal {
-            animation: forceShow 0.1s forwards;
-            animation-delay: 3s; 
-        }
-
-        .hero-gradient {
-            background: linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, rgba(10,10,10,1) 100%);
-        }
-
-        .nav-blur {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        .hover-gold {
-            position: relative;
-        }
-        .hover-gold::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: #D4AF37;
-            transition: width 0.3s ease;
-        }
-        .hover-gold:hover::after {
-            width: 100%;
-        }
-
+        body { background-color: #0a0a0a; color: #f3f4f6; overflow-x: hidden; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .reveal.active { opacity: 1 !important; transform: translateY(0) !important; }
+        @keyframes forceShow { to { opacity: 1; transform: translateY(0); } }
+        .reveal { animation: forceShow 0.1s forwards; animation-delay: 3s; }
+        .nav-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .hover-gold { position: relative; }
+        .hover-gold::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: #D4AF37; transition: width 0.3s ease; }
+        .hover-gold:hover::after { width: 100%; }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #0a0a0a; }
         ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
-        
-        #admin-panel {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(10,10,10,0.98);
-            z-index: 1000;
-            overflow-y: auto;
-            padding: 2rem;
-        }
     </style>
 </head>
 <body class="font-body antialiased selection:bg-brand-gold selection:text-brand-black">
 
-    <!-- Navigation -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 border-b border-transparent">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-24">
-
                 <div class="hidden md:flex items-center space-x-10">
                     <a href="#home" class="hover-gold text-gray-300 hover:text-white font-semibold transition-colors text-xs uppercase tracking-widest">Home</a>
                     <a href="#services" class="hover-gold text-gray-300 hover:text-white font-semibold transition-colors text-xs uppercase tracking-widest">Services</a>
                     <a href="#gallery" class="hover-gold text-gray-300 hover:text-white font-semibold transition-colors text-xs uppercase tracking-widest">Our Work</a>
                     <a href="#about" class="hover-gold text-gray-300 hover:text-white font-semibold transition-colors text-xs uppercase tracking-widest">About</a>
                 </div>
-
                 <div class="hidden md:flex">
                     <a href="tel:8134300032" class="flex items-center gap-3 bg-brand-gold hover:bg-white text-brand-black px-6 py-3 rounded-sm font-black transition-all duration-300 uppercase text-xs tracking-tighter">
-                        <i data-lucide="phone" class="w-4 h-4"></i>
-                        (813) 430-0032
+                        <i data-lucide="phone" class="w-4 h-4"></i> (813) 430-0032
                     </a>
                 </div>
-
                 <div class="md:hidden ml-auto">
-                    <button id="mobile-menu-btn" class="text-white p-2">
-                        <i data-lucide="menu" id="menu-icon" class="w-8 h-8"></i>
-                    </button>
+                    <button id="mobile-menu-btn" class="text-white p-2"><i data-lucide="menu" class="w-8 h-8"></i></button>
                 </div>
             </div>
         </div>
-
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden fixed inset-0 bg-brand-black z-[60] flex flex-col items-center justify-center space-y-8">
-             <button id="close-menu" class="absolute top-8 right-8 text-brand-gold">
-                <i data-lucide="x" class="w-10 h-10"></i>
-            </button>
+            <button id="close-menu" class="absolute top-8 right-8 text-brand-gold"><i data-lucide="x" class="w-10 h-10"></i></button>
             <a href="#home" class="mobile-link text-3xl font-heading font-black text-white uppercase tracking-tighter">Home</a>
             <a href="#services" class="mobile-link text-3xl font-heading font-black text-white uppercase tracking-tighter">Services</a>
             <a href="#gallery" class="mobile-link text-3xl font-heading font-black text-white uppercase tracking-tighter">Our Work</a>
@@ -149,59 +82,40 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-zinc-900 via-brand-black to-zinc-900">
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=2400" alt="Luxury Tinted Car" class="w-full h-full object-cover opacity-70" onerror="this.style.display='none'" />
             <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-brand-black"></div>
         </div>
-
         <div class="relative z-10 text-center px-4 max-w-5xl mx-auto reveal active">
             <span class="inline-block border border-brand-gold text-brand-gold px-4 py-1 rounded-full text-xs font-bold tracking-[.3em] uppercase mb-8 bg-brand-black/40 backdrop-blur-sm">Est. 2025 • Tampa, FL</span>
-
             <div class="flex flex-col items-center mb-4">
                 <svg width="70" height="60" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-6 drop-shadow-2xl">
                     <path d="M16 0L32 28H0L16 0Z" fill="#D4AF37"/>
                 </svg>
-                <h1 class="font-heading text-6xl md:text-9xl font-black text-white leading-[0.85] uppercase tracking-[0.05em] drop-shadow-2xl">
-                    APEX
-                </h1>
+                <h1 class="font-heading text-6xl md:text-9xl font-black text-white leading-[0.85] uppercase tracking-[0.05em] drop-shadow-2xl">APEX</h1>
                 <span class="font-heading font-bold text-sm md:text-lg tracking-[0.5em] text-brand-gold uppercase mt-3">AUTOFILM</span>
             </div>
-
-            <p class="text-base md:text-xl text-gray-300 mb-12 mt-8 max-w-2xl mx-auto font-light leading-relaxed">
-                Premium Ceramic & Carbon window tinting, engineered for Florida's heat.
-            </p>
-
+            <p class="text-base md:text-xl text-gray-300 mb-12 mt-8 max-w-2xl mx-auto font-light leading-relaxed">Premium Ceramic & Carbon window tinting, engineered for Florida's heat.</p>
             <div class="flex flex-col sm:flex-row gap-5 justify-center items-center">
-                <a href="#contact" class="w-full sm:w-auto bg-brand-gold hover:bg-white text-brand-black font-black text-sm px-12 py-5 rounded-sm transition-all duration-300 uppercase tracking-widest shadow-lg text-center">
-                    Book Appointment
-                </a>
-                <a href="tel:8134300032" class="w-full sm:w-auto bg-transparent border border-white/40 hover:border-brand-gold text-white font-bold text-sm px-12 py-5 rounded-sm transition-all duration-300 uppercase tracking-widest text-center backdrop-blur-sm">
-                    Call Today
-                </a>
+                <a href="#contact" class="w-full sm:w-auto bg-brand-gold hover:bg-white text-brand-black font-black text-sm px-12 py-5 rounded-sm transition-all duration-300 uppercase tracking-widest shadow-lg text-center">Book Appointment</a>
+                <a href="tel:8134300032" class="w-full sm:w-auto bg-transparent border border-white/40 hover:border-brand-gold text-white font-bold text-sm px-12 py-5 rounded-sm transition-all duration-300 uppercase tracking-widest text-center backdrop-blur-sm">Call Today</a>
             </div>
         </div>
-        
         <div class="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce">
             <i data-lucide="chevron-down" class="text-white/40 w-8 h-8"></i>
         </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services" class="py-32 bg-brand-black overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-20 items-center mb-32 reveal">
                 <div class="w-full lg:w-1/2 relative group">
-                    <div class="absolute -inset-4 bg-brand-gold/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                     <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&q=80&w=1000" alt="Window Tint Application" class="relative z-10 rounded-sm shadow-2xl grayscale-[20%] group-hover:grayscale-0 transition-all duration-500 w-full h-auto">
                 </div>
                 <div class="w-full lg:w-1/2">
                     <h2 class="font-heading text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">Expert <span class="text-brand-gold">Tinting</span></h2>
-                    <p class="text-gray-400 text-xl leading-relaxed mb-10 font-light">
-                        Our window tinting services are a thermal barrier that blocks up to 99% of UV rays and significantly reduces cabin temperature.
-                    </p>
-                    
+                    <p class="text-gray-400 text-xl leading-relaxed mb-10 font-light">Our window tinting services are a thermal barrier that blocks up to 99% of UV rays and significantly reduces cabin temperature.</p>
                     <div class="space-y-6 mb-12">
                         <div class="flex gap-5 items-start">
                             <div class="mt-1 flex-shrink-0 w-10 h-10 bg-brand-gold/10 rounded flex items-center justify-center text-brand-gold border border-brand-gold/20">
@@ -222,16 +136,14 @@
                             </div>
                         </div>
                     </div>
-                    
                     <a href="#contact" class="inline-flex items-center gap-4 bg-brand-gold hover:bg-white text-brand-black font-black px-10 py-5 rounded-sm transition-all duration-300 uppercase text-xs tracking-widest">
                         Get Your Custom Quote <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </a>
                 </div>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
                 <div class="bg-brand-charcoal p-10 border border-white/5 hover:border-brand-gold/50 transition-all duration-500 group">
-                    <i data-lucide="shield-check" class="text-brand-gold w-10 h-10 mb-8 group-hover:scale-110 transition-transform"></i>
+                    <i data-lucide="shield-check" class="text-brand-gold w-10 h-10 mb-8"></i>
                     <h3 class="font-heading font-black text-2xl text-white mb-4 uppercase tracking-tighter">Paint Protection</h3>
                     <p class="text-gray-400 text-sm leading-relaxed mb-8">Invisible, self-healing armor for your paint. Stops rock chips and scratches.</p>
                     <ul class="text-[10px] text-brand-gold uppercase tracking-[.2em] font-bold space-y-2 mb-10">
@@ -242,7 +154,7 @@
                     <a href="#contact" class="text-white text-xs font-black uppercase tracking-widest border-b border-brand-gold pb-1 hover:text-brand-gold transition-colors">Learn More</a>
                 </div>
                 <div class="bg-brand-charcoal p-10 border border-white/5 hover:border-brand-gold/50 transition-all duration-500 group">
-                    <i data-lucide="sparkles" class="text-brand-gold w-10 h-10 mb-8 group-hover:scale-110 transition-transform"></i>
+                    <i data-lucide="sparkles" class="text-brand-gold w-10 h-10 mb-8"></i>
                     <h3 class="font-heading font-black text-2xl text-white mb-4 uppercase tracking-tighter">Ceramic Coating</h3>
                     <p class="text-gray-400 text-sm leading-relaxed mb-8">Mirror finish with multi-year durability. Unmatched hydrophobic properties.</p>
                     <ul class="text-[10px] text-brand-gold uppercase tracking-[.2em] font-bold space-y-2 mb-10">
@@ -253,7 +165,7 @@
                     <a href="#contact" class="text-white text-xs font-black uppercase tracking-widest border-b border-brand-gold pb-1 hover:text-brand-gold transition-colors">Learn More</a>
                 </div>
                 <div class="bg-brand-charcoal p-10 border border-white/5 hover:border-brand-gold/50 transition-all duration-500 group">
-                    <i data-lucide="wrench" class="text-brand-gold w-10 h-10 mb-8 group-hover:scale-110 transition-transform"></i>
+                    <i data-lucide="wrench" class="text-brand-gold w-10 h-10 mb-8"></i>
                     <h3 class="font-heading font-black text-2xl text-white mb-4 uppercase tracking-tighter">Intoxalock</h3>
                     <p class="text-gray-400 text-sm leading-relaxed mb-8">Official certified installation center. Speed, care, and total discretion.</p>
                     <ul class="text-[10px] text-brand-gold uppercase tracking-[.2em] font-bold space-y-2 mb-10">
@@ -267,14 +179,11 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
     <section id="gallery" class="py-32 bg-brand-charcoal border-y border-white/5">
         <div class="max-w-4xl mx-auto px-4 text-center reveal">
             <span class="text-brand-gold font-black uppercase tracking-[.4em] text-xs mb-6 block">Visual Portfolio</span>
             <h2 class="font-heading text-4xl md:text-6xl font-black text-white mb-8 uppercase tracking-tighter">Daily Transformations</h2>
-            <p class="text-gray-400 text-xl leading-relaxed mb-12 font-light">
-                See what rolls through our shop every single day on Instagram.
-            </p>
+            <p class="text-gray-400 text-xl leading-relaxed mb-12 font-light">See what rolls through our shop every single day on Instagram.</p>
             <div class="bg-brand-black/40 p-12 rounded-sm border border-white/5 flex flex-col items-center">
                 <h4 class="text-white font-bold mb-6 text-xl tracking-tight">Join Our Community on IG</h4>
                 <a href="https://www.instagram.com/apex_autofilm?igsh=NGptZXF6NHozZ251" target="_blank" rel="noopener noreferrer" class="group relative inline-flex items-center gap-3 bg-gradient-to-tr from-brand-gold to-brand-goldHover text-brand-black font-black text-lg px-12 py-5 rounded-sm transition-transform hover:scale-105 uppercase tracking-widest">
@@ -284,4 +193,186 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <section id="about" class="py-32 bg-brand-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center reveal">
+                <div class="lg:col-span-7">
+                    <h2 class="font-heading text-4xl md:text-7xl font-black text-white mb-8 uppercase tracking-tighter">Apex <span class="text-brand-gold">Excellence</span></h2>
+                    <p class="text-gray-400 text-xl leading-relaxed mb-8 font-light max-w-2xl">Located in the heart of Tampa, Apex AutoFilm was founded to bridge the gap between "standard" automotive service and elite protection.</p>
+                    <p class="text-gray-200 text-xl leading-relaxed font-medium max-w-2xl">We don't just apply film; we safeguard your vehicle's future. Every cut is precise, every application is flawless.</p>
+                </div>
+                <div class="lg:col-span-5">
+                    <a href="https://maps.app.goo.gl/i3nnem6YCunHXXsK9" target="_blank" rel="noopener noreferrer" class="block bg-brand-gold text-brand-black p-10 md:p-14 rounded-sm shadow-2xl border-t-8 border-brand-black hover:scale-[1.02] transition-transform group cursor-pointer relative overflow-hidden">
+                        <i data-lucide="map-pin" class="absolute -right-4 -bottom-4 w-32 h-32 opacity-10"></i>
+                        <div class="relative z-10">
+                            <div class="flex justify-between items-start mb-6">
+                                <span class="text-[12px] font-black uppercase tracking-[.4em] text-brand-black/60">Location Details</span>
+                                <i data-lucide="external-link" class="w-6 h-6 opacity-40"></i>
+                            </div>
+                            <h4 class="font-heading font-black text-3xl md:text-4xl mb-3 uppercase tracking-tighter">UNIT 101</h4>
+                            <p class="font-bold text-lg md:text-xl leading-tight uppercase mb-8">1717 E BUSCH BLVD<br/>TAMPA, FL 33612</p>
+                            <div class="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest border-b-2 border-brand-black/20 pb-1">
+                                Get Directions <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-32 bg-brand-charcoal relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="bg-brand-black rounded-sm border border-white/5 overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-2">
+                <div class="p-10 md:p-16">
+                    <h2 class="font-heading text-4xl font-black text-white mb-4 uppercase tracking-tighter">Request a <span class="text-brand-gold">Quote</span></h2>
+                    <p class="text-gray-400 mb-10 font-light">Provide vehicle details and we will reach out within 24 hours.</p>
+                    <form id="bookingForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <input type="text" id="form-name" placeholder="FULL NAME" required class="bg-brand-charcoal border border-white/10 rounded-sm px-5 py-4 text-white text-xs font-bold tracking-widest focus:border-brand-gold outline-none uppercase w-full">
+                            <input type="tel" id="form-phone" placeholder="PHONE NUMBER" required class="bg-brand-charcoal border border-white/10 rounded-sm px-5 py-4 text-white text-xs font-bold tracking-widest focus:border-brand-gold outline-none uppercase w-full">
+                        </div>
+                        <select id="form-service" required class="w-full bg-brand-charcoal border border-white/10 rounded-sm px-5 py-4 text-white text-xs font-bold tracking-widest focus:border-brand-gold outline-none appearance-none uppercase">
+                            <option value="" disabled selected>SELECT SERVICE</option>
+                            <option value="Window Tinting">Window Tinting (Ceramic/Carbon)</option>
+                            <option value="PPF">Paint Protection (PPF)</option>
+                            <option value="Ceramic Coating">Ceramic Coating</option>
+                            <option value="Intoxalock">Intoxalock Installation</option>
+                        </select>
+                        <textarea id="form-details" rows="4" placeholder="VEHICLE YEAR, MAKE, MODEL & ANY QUESTIONS" class="w-full bg-brand-charcoal border border-white/10 rounded-sm px-5 py-4 text-white text-xs font-bold tracking-widest focus:border-brand-gold outline-none resize-none uppercase"></textarea>
+                        <button type="submit" id="submit-btn" class="w-full bg-brand-gold hover:bg-white text-brand-black font-black text-sm px-8 py-5 rounded-sm transition-all duration-300 uppercase tracking-widest shadow-xl">Send Quote Request</button>
+                    </form>
+                </div>
+                <div class="bg-brand-lightCharcoal/20 p-10 md:p-16 border-l border-white/5">
+                    <div class="space-y-12">
+                        <a href="https://maps.app.goo.gl/i3nnem6YCunHXXsK9" target="_blank" class="flex items-start gap-6 group hover:bg-white/5 p-2 -m-2 rounded transition-colors cursor-pointer">
+                            <i data-lucide="map-pin" class="text-brand-gold w-8 h-8 flex-shrink-0"></i>
+                            <div>
+                                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-2 group-hover:text-brand-gold transition-colors">Visit the Shop</h4>
+                                <p class="text-gray-400 font-medium group-hover:text-white transition-colors">1717 E Busch Blvd, Unit 101<br/>Tampa, FL 33612</p>
+                            </div>
+                        </a>
+                        <div class="flex items-start gap-6">
+                            <i data-lucide="phone" class="text-brand-gold w-8 h-8 flex-shrink-0"></i>
+                            <div>
+                                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-2">Call Direct</h4>
+                                <p class="text-2xl font-black text-white tracking-tighter">(813) 430-0032</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6">
+                            <i data-lucide="clock" class="text-brand-gold w-8 h-8 flex-shrink-0"></i>
+                            <div>
+                                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-2">Hours</h4>
+                                <p class="text-gray-400 text-sm">Mon - Sat: 10:00 AM – 8:00 PM</p>
+                                <p class="text-gray-400 text-sm">Sun: 10:00 AM – 5:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-black py-20 border-t border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16 mb-16 border-b border-white/5 pb-16">
+                <div class="font-heading font-black text-xl md:text-2xl tracking-widest text-white/50 uppercase flex items-center gap-3 grayscale hover:grayscale-0 hover:text-white transition-all">
+                    <i data-lucide="lock" class="text-brand-gold w-6 h-6"></i> INTOXALOCK
+                </div>
+                <div class="flex flex-col items-center">
+                    <svg width="40" height="34" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-2">
+                        <path d="M16 0L32 28H0L16 0Z" fill="#D4AF37"/>
+                    </svg>
+                    <span class="font-heading font-black text-3xl tracking-[0.2em] text-white leading-none uppercase">APEX</span>
+                    <span class="font-heading font-bold text-xs tracking-[0.4em] text-brand-gold leading-none uppercase mt-2">AUTOFILM</span>
+                </div>
+                <div class="font-heading font-black text-xl md:text-2xl tracking-widest text-white/50 uppercase flex items-center gap-3 grayscale hover:grayscale-0 hover:text-white transition-all">
+                    <i data-lucide="shield-check" class="text-brand-gold w-6 h-6"></i> LIFESAFER
+                </div>
+                <div class="font-heading font-black text-xl md:text-2xl tracking-widest text-white/50 uppercase flex items-center gap-3 grayscale hover:grayscale-0 hover:text-white transition-all">
+                    <i data-lucide="cpu" class="text-brand-gold w-6 h-6"></i> HITEK
+                </div>
+            </div>
+            <p class="text-gray-700 text-[10px] font-black uppercase tracking-[0.5em]">
+                © <span id="year"></span> APEX AUTOFILM LLC • ALL RIGHTS RESERVED
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            function forceReveal() {
+                const reveals = document.querySelectorAll(".reveal");
+                const windowHeight = window.innerHeight;
+                reveals.forEach(el => {
+                    const elementTop = el.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - 50 || el.closest('#home')) {
+                        el.classList.add("active");
+                    }
+                });
+            }
+            forceReveal();
+            window.addEventListener("scroll", forceReveal);
+            window.addEventListener("load", forceReveal);
+
+            const form = document.getElementById('bookingForm');
+            const submitBtn = document.getElementById('submit-btn');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById('form-name').value;
+                    const phone = document.getElementById('form-phone').value;
+                    const service = document.getElementById('form-service').value;
+                    const details = document.getElementById('form-details').value;
+                    const subject = `Quote Request: ${service}`;
+                    const body = `Name: ${name}\nPhone: ${phone}\nService: ${service}\nDetails: ${details}`;
+                    window.location.href = `mailto:apexautofilm1@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    submitBtn.innerHTML = "QUOTE SENT!";
+                    submitBtn.classList.replace('bg-brand-gold', 'bg-green-600');
+                    form.reset();
+                    setTimeout(() => {
+                        submitBtn.innerHTML = "SEND QUOTE REQUEST";
+                        submitBtn.classList.replace('bg-green-600', 'bg-brand-gold');
+                    }, 3000);
+                });
+            }
+
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenuBtn = document.getElementById('close-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    mobileMenu.classList.toggle('flex');
+                });
+            }
+            if (closeMenuBtn) {
+                closeMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                });
+            }
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                });
+            });
+
+            window.addEventListener('scroll', () => {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('nav-blur', 'bg-brand-black/80', 'border-white/10');
+                } else {
+                    navbar.classList.remove('nav-blur', 'bg-brand-black/80', 'border-white/10');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
