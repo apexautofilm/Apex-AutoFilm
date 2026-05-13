@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apex AutoFilm | Tampa's Window Tinting & Protection Experts</title>
     <meta name="description" content="Tampa's high-demand window tinting specialist. Premium Ceramic & Carbon films, PPF, Ceramic Coating, and Intoxalock installation. Located at 1717 E Busch Blvd.">
-    <meta name="keywords" content="Tampa window tinting, ceramic tint Tampa, carbon tint, Apex AutoFilm, automotive protection Tampa, Intoxalock installation Tampa">
+    <meta name="keywords" content="Tampa window tinting, Hi-Tek Tint, ceramic tint Tampa, carbon tint, Apex AutoFilm, automotive protection Tampa, Intoxalock installation Tampa">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,7 +46,6 @@
             overflow-x: hidden;
         }
         
-        /* Animation states */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -59,7 +58,6 @@
             transform: translateY(0) !important;
         }
 
-        /* FALLBACK: If JS fails or is slow, show content after 3 seconds anyway */
         @keyframes forceShow {
             to { opacity: 1; transform: translateY(0); }
         }
@@ -365,7 +363,7 @@
                             <i data-lucide="phone" class="text-brand-gold w-8 h-8 flex-shrink-0"></i>
                             <div>
                                 <h4 class="text-white font-black uppercase tracking-widest text-sm mb-2">Call Direct</h4>
-                                <p class="text-2xl font-black text-white tracking-tighter">(813) 430-0032</p>
+                                <a href="tel:8134300032" class="text-2xl font-black text-white tracking-tighter hover:text-brand-gold transition-colors">(813) 430-0032</a>
                             </div>
                         </div>
                         <div class="flex items-start gap-6">
@@ -399,12 +397,22 @@
     <footer class="bg-brand-black py-20 border-t border-white/5 relative">
         <div class="max-w-7xl mx-auto px-4 text-center">
             
-            <div class="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-20 mb-16 border-b border-white/5 pb-16">
-                <div class="font-heading font-black text-xl md:text-2xl tracking-widest text-white/50 uppercase flex items-center gap-3 grayscale hover:grayscale-0 hover:text-white transition-all">
-                    <i data-lucide="lock" class="text-brand-gold w-6 h-6"></i> INTOXALOCK
+            <!-- BRAND RIBBON WITH HI-TEK LOGO -->
+            <div class="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-16 mb-16 border-b border-white/5 pb-16">
+                
+                <!-- Intoxalock -->
+                <div class="font-heading font-black text-lg tracking-widest text-white/50 uppercase flex items-center gap-3 grayscale hover:grayscale-0 hover:text-white transition-all">
+                    <i data-lucide="lock" class="text-brand-gold w-5 h-5"></i> INTOXALOCK
+                </div>
+
+                <!-- HI-TEK TINT LOGO -->
+                <div class="flex flex-col items-center group">
+                    <img src="https://hitektint.com/wp-content/uploads/2023/11/hitek-logo-white.png" alt="Hi-Tek Tint" class="h-8 md:h-10 opacity-50 group-hover:opacity-100 transition-opacity duration-300">
+                    <span class="text-[8px] font-bold tracking-[.4em] text-brand-gold/50 mt-2 uppercase">Authorized Dealer</span>
                 </div>
                 
-                <div class="flex flex-col items-center">
+                <!-- Main Logo -->
+                <div class="flex flex-col items-center order-first md:order-none">
                     <svg width="40" height="34" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-2">
                         <path d="M16 0L32 28H0L16 0Z" fill="#D4AF37"/>
                     </svg>
@@ -412,8 +420,9 @@
                     <span class="font-heading font-bold text-xs tracking-[0.4em] text-brand-gold leading-none uppercase mt-2">AUTOFILM</span>
                 </div>
 
-                <div class="font-heading font-black text-xl md:text-2xl tracking-widest text-white/50 uppercase flex items-center gap-3 grayscale hover:grayscale-0 hover:text-white transition-all">
-                    <i data-lucide="shield-check" class="text-brand-gold w-6 h-6"></i> LIFESAFER
+                <!-- LifeSafer -->
+                <div class="font-heading font-black text-lg tracking-widest text-white/50 uppercase flex items-center gap-3 grayscale hover:grayscale-0 hover:text-white transition-all">
+                    <i data-lucide="shield-check" class="text-brand-gold w-5 h-5"></i> LIFESAFER
                 </div>
             </div>
 
@@ -433,6 +442,7 @@
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
+        // Logic for Firebase (Config injected elsewhere)
         const firebaseConfig = JSON.parse(__firebase_config);
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -440,34 +450,49 @@
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'apex-autofilm';
 
         signInAnonymously(auth).catch(console.error);
-
         lucide.createIcons();
+
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        /**
-         * AGGRESSIVE REVEAL SYSTEM
-         * Ensures visibility even on slow GitHub loads
-         */
+        // SCROLL NAVBAR LOGIC
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-blur', 'bg-brand-black/80', 'border-white/10');
+                nav.classList.remove('h-24');
+                nav.classList.add('h-20');
+            } else {
+                nav.classList.remove('nav-blur', 'bg-brand-black/80', 'border-white/10');
+                nav.classList.remove('h-20');
+                nav.classList.add('h-24');
+            }
+        });
+
+        // MOBILE MENU TOGGLE
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        const toggleMenu = () => mobileMenu.classList.toggle('hidden');
+        menuBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // AGGRESSIVE REVEAL SYSTEM
         function forceReveal() {
             const reveals = document.querySelectorAll(".reveal");
             const windowHeight = window.innerHeight;
-            
             reveals.forEach(el => {
                 const elementTop = el.getBoundingClientRect().top;
-                // If the element is within 150px of the screen view, or it's the hero, reveal it
                 if (elementTop < windowHeight - 50 || el.closest('#home')) {
                     el.classList.add("active");
                 }
             });
         }
 
-        // 1. Run on load
         window.addEventListener("load", forceReveal);
-        
-        // 2. Run on scroll
         window.addEventListener("scroll", forceReveal);
-
-        // 3. Brute force check: Run every 100ms for 2 seconds to catch elements that shifted
         let checkCount = 0;
         const interval = setInterval(() => {
             forceReveal();
@@ -475,11 +500,7 @@
             if (checkCount > 20) clearInterval(interval);
         }, 100);
 
-        // 4. Mutation observer: Catch elements if they are added or changed
-        const observer = new MutationObserver(forceReveal);
-        observer.observe(document.body, { childList: true, subtree: true });
-
-        // Lead Form
+        // FORM SUBMISSION
         const form = document.getElementById('bookingForm');
         const submitBtn = document.getElementById('submit-btn');
 
@@ -516,7 +537,7 @@
             }
         });
 
-        // Admin Auth
+        // ADMIN PANEL
         window.checkAdmin = () => {
             const pass = prompt("Admin Password:");
             if (pass === "apex2025") {
@@ -525,43 +546,16 @@
                 onSnapshot(q, (snap) => {
                     const list = document.getElementById('leads-list');
                     list.innerHTML = "";
-                    if (snap.empty) {
-                        list.innerHTML = '<p class="text-gray-500">No leads found yet.</p>';
-                        return;
-                    }
                     snap.forEach(doc => {
-                        const d = doc.data();
+                        const data = doc.data();
                         const div = document.createElement('div');
-                        div.className = "bg-brand-charcoal p-6 border border-white/10 rounded-sm mb-4";
-                        div.innerHTML = `
-                            <div class="flex justify-between mb-2">
-                                <h3 class="text-white font-black uppercase tracking-tight">${d.name}</h3>
-                                <span class="text-brand-gold text-xs font-bold uppercase tracking-widest">${d.service}</span>
-                            </div>
-                            <p class="text-brand-gold font-bold mb-2">${d.phone}</p>
-                            <p class="text-gray-400 text-sm italic">"${d.details}"</p>
-                            <p class="text-gray-600 text-[10px] mt-4 uppercase font-bold">${d.createdAt ? new Date(d.createdAt.seconds * 1000).toLocaleString() : 'Just now'}</p>
-                        `;
-                        list.prepend(div);
+                        div.className = "bg-brand-charcoal p-4 border border-white/10 rounded flex justify-between";
+                        div.innerHTML = `<div><p class='text-brand-gold font-bold'>${data.name}</p><p class='text-xs'>${data.service}</p></div><div class='text-right'><p class='text-white'>${data.phone}</p></div>`;
+                        list.appendChild(div);
                     });
-                }, (err) => {
-                    console.error("Firestore error:", err);
-                    document.getElementById('leads-list').innerHTML = '<p class="text-red-500">Access Denied or Connection Error.</p>';
                 });
             }
         };
-
-        // Navbar Styling on Scroll
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) navbar.classList.add('bg-brand-black/90', 'nav-blur', 'border-white/5');
-            else navbar.classList.remove('bg-brand-black/90', 'nav-blur', 'border-white/5');
-        });
-
-        // Mobile Menu Controls
-        document.getElementById('mobile-menu-btn').onclick = () => document.getElementById('mobile-menu').classList.remove('hidden');
-        document.getElementById('close-menu').onclick = () => document.getElementById('mobile-menu').classList.add('hidden');
-        document.querySelectorAll('.mobile-link').forEach(l => l.onclick = () => document.getElementById('mobile-menu').classList.add('hidden'));
     </script>
 </body>
 </html>
